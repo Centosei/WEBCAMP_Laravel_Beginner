@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/welcome', [WelcomeController::class, 'index']);
+Route::get('/welcome/second', [WelcomeController::class, 'second']);
+Route::get('/welcome/third', [WelcomeController::class, 'third']);
