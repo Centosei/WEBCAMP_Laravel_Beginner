@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,11 @@ use App\Http\Controllers\WelcomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// task managemaent system
+Route::get('/', [AuthController::class, 'index']);
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
+
+// test
 Route::get('/welcome', [WelcomeController::class, 'index']);
 Route::get('/welcome/second', [WelcomeController::class, 'second']);
 Route::get('/welcome/third', [WelcomeController::class, 'third']);
