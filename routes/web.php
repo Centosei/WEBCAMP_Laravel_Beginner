@@ -22,9 +22,10 @@ Route::post('/login', [AuthController::class, 'login']);
 // 認可
 Route::middleware(['auth'])->group(function () {
     Route::get('/task/list', [TaskController::class, 'list']);
+    // タスクの登録
+    Route::post('/task/register', [TaskController::class, 'register']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
-
 
 // test
 Route::get('/welcome', [WelcomeController::class, 'index']);
