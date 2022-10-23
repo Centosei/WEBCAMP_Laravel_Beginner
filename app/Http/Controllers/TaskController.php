@@ -16,7 +16,18 @@ class TaskController extends Controller
      */
     public function list()
     {
-        return view('task.list');
+        // 一覧の取得
+        $list = TaskModel::where('user_id', Auth::id())
+                        ->orderBy('priority', 'DESC')
+                        ->orderBy('period')
+                        ->orderBy('created_at')
+                        ->get();
+// $sql = TaskModel::where('user_id', Auth::id())
+//                  ->orderBy('priority', 'DESC')
+//                  ->orderBy('period')
+//                  ->orderBy('created_at')
+//                  ->toSql();
+        return view('task.list', ['list' => $list]);
     }
     
     /**
