@@ -21,9 +21,12 @@ Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
 // 認可
 Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list']);
-    // タスクの登録
-    Route::post('/task/register', [TaskController::class, 'register']);
+    Route::prefix('/task')->group(function() {
+        Route::get('/list', [TaskController::class, 'list']);
+        Route::post('/register', [TaskController::class, 'register']);
+        Route::get('/detail/{task_id}', [TaskController::class, 'detail'])->whereNumber('task_id')->name('detail');
+    });
+    // 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
