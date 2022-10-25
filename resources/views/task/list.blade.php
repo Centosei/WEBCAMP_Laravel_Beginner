@@ -37,7 +37,7 @@
         </form>
 
         <h1>タスクの一覧</h1>
-        <a href="./top.html">CSVダウンロード(未実装)</a><br>
+        <a href="/task/csv/download">CSVダウンロード(未実装)</a><br>
         <table border="1">
 @foreach ($list as $task)
         <tr>
