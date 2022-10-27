@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompletedTaskController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
@@ -23,6 +24,8 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 // entry
 Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/user/register', [UserController::class, 'index']);
+Route::post('/register', [UserController::class, 'register']);
 // user log in
 Route::middleware(['auth'])->group(function () {
     // user logged in

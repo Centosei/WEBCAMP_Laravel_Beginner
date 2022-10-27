@@ -27,6 +27,6 @@ class CompletedTaskController extends Controller
     protected function getListBuilder()
     {
         return CompletedTaskModel::where('user_id', Auth::id())
-                     ->orderBy('created_at');
+                     ->orderBy('created_at', 'DESC');
     }
 }
