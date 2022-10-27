@@ -30,7 +30,7 @@ class UserController extends Controller
             DB::table('users')->insert([
             'name' => $datum['name'],
             'email' => $datum['email'],
-            'verified_at' => date('Y-m-d H:i:s'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make($datum['password']),
             ]);
         } catch(\Throwable $e) {
