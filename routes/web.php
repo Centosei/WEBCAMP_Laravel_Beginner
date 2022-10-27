@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CompletedTaskController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -19,11 +20,12 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// task managemaent system
+// entry
 Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
-// 認可
+// user log in
 Route::middleware(['auth'])->group(function () {
+    // user logged in
     Route::prefix('/task')->group(function() {
         Route::get('/list', [TaskController::class, 'list']);
         Route::post('/register', [TaskController::class, 'register']);
@@ -34,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/complete/{task_id}', [TaskController::class, 'complete'])->whereNumber('task_id')->name('complete');
         Route::get('/csv/download', [TaskController::class, 'csvDownload']);
     });
+    // from /task/list to /completed_tasks/list
+    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list']);
     // 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
